@@ -44,6 +44,7 @@ class HomeController extends Controller
             ->where('firstname',$request->firstname)
             ->where('middlename',$request->middlename)
             ->where('birthdate',$request->birthdate)
+            ->where('is_deleted',0)
             ->count();
         } else {
             $validated = $request->validate([
@@ -54,6 +55,7 @@ class HomeController extends Controller
             ->leftJoin('user__details', 'users.user_id', '=', 'user__details.id')
             ->where('lastname',$request->last_name)
             ->where('student_number',$request->student_number)
+            ->where('is_deleted',0)
             ->count();
         }
 
